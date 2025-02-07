@@ -4,9 +4,12 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 
+const isEnvGitHub = import.meta.env.MODE === "production";
+
+
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={isEnvGitHub ? "/fetch-a-match" : "/"}>
       <App />
     </BrowserRouter>
   </React.StrictMode>,

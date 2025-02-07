@@ -22,6 +22,7 @@ function App() {
   return (
       <div className='appBody'>
         <Routes>
+          <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={!userOn ? <LoginPage/> : <Navigate to="/home-page"/>} />
           <Route path="/home-page" element={userOn ? <LandingPage/> : <Navigate to="/login"/>} />
         </Routes>

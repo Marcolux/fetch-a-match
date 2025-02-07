@@ -7,5 +7,5 @@ var isEnvGitHub = ((_a = import.meta.env) === null || _a === void 0 ? void 0 : _
 // https://vite.dev/config/
 exports.default = (0, vite_1.defineConfig)({
     plugins: [(0, plugin_react_1.default)()],
-    base: isEnvGitHub ? '/fetch-a-match/login' : '/login',
+    base: isEnvGitHub ? '/fetch-a-match/' : '/',
 });
