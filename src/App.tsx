@@ -1,34 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useState, useEffect } from 'react'
+
+import LoginPage from './pages/Login-page/LoginPage'
+import LandingPage from './pages/Landing-page/LandingPage';
 import './App.scss'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [userOn, setUserOn] = useState<boolean>(() => {
+    return localStorage.getItem('is_user_login') === 'true'
+  })
+
+  useEffect(() => {
+    const isUserLoggedIn = () => { setUserOn(localStorage.getItem('is_user_login') === 'true') }
+    window.addEventListener("storage", isUserLoggedIn)
+    return () => {
+      window.removeEventListener("storage", isUserLoggedIn);
+    }
+  }, [])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='appBody'>
+        <Routes>
+          <Route path="/login" element={!userOn ? <LoginPage/> : <Navigate to="/home-page"/>} />
+          <Route path="/home-page" element={userOn ? <LandingPage/> : <Navigate to="/login"/>} />
+        </Routes>
       </div>
-      
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
   )
 }
 

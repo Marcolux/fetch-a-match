@@ -1,0 +1,30 @@
+#login_page {
+    #loginBox {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid blue;
+        padding: 30px;
+        .loginField {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 60px;
+                input {
+                    height: 25px;
+                }
+                p {
+                    color: rgb(132, 3, 3);
+                    font-size: 14px;
+                    font-weight: 400 !important;
+                    margin-bottom: 0px;
+                    margin-top: 5px;
+                    line-height: 16px;
+                }
+            }
+        }
+    }
+}
