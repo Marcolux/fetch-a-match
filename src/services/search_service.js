@@ -53,7 +53,8 @@ var SearchService = /** @class */ (function () {
                                 method: "GET",
                                 headers: {
                                     "Content-Type": "application/json"
-                                }
+                                },
+                                credentials: 'include'
                             })];
                     case 2:
                         response = _a.sent();
@@ -70,22 +71,22 @@ var SearchService = /** @class */ (function () {
             });
         }); };
         this.allDogsAvailable = function (filters) { return __awaiter(_this, void 0, void 0, function () {
-            var url, queryParams, response, allDogs, error_2;
+            var url, queryParams_1, response, allDogs, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         url = "https://frontend-take-home-service.fetch.com/dogs/search";
                         if (filters) {
-                            queryParams = new URLSearchParams();
-                            if (filters.breeds)
-                                queryParams.append("breeds", filters.breeds.join(','));
-                            if (filters.zipCodes)
-                                queryParams.append("zipCodes", filters.zipCodes.join(','));
-                            if (filters.ageMin)
-                                queryParams.append("ageMin", filters.ageMin);
-                            if (filters.ageMax)
-                                queryParams.append("ageMax", filters.ageMax);
-                            url += "?".concat(queryParams.toString());
+                            queryParams_1 = new URLSearchParams();
+                            if (filters.breeds.length > 0)
+                                filters.breeds.forEach(function (breed) { return queryParams_1.append("breeds", breed); });
+                            if (filters.zipCodes.length > 0)
+                                filters.breeds.forEach(function (zipCode) { return queryParams_1.append("zipCodes", zipCode); });
+                            if (filters.ageMin !== '')
+                                queryParams_1.append("ageMin", filters.ageMin);
+                            if (filters.ageMax !== '')
+                                queryParams_1.append("ageMax", filters.ageMax);
+                            url += "?".concat(queryParams_1.toString());
                         }
                         _a.label = 1;
                     case 1:

@@ -19,17 +19,10 @@ export class LoginService {
             if (!response.ok) {
                 throw new Error(`Response status: ${response.status}`)
             }
-            console.log(response)
-
-            console.log("Request Successful:", response.ok)
-
             return response.ok
-
-          
         } catch (error: any) {
           console.error(error.message);
         }
-
         return false
     }
 
@@ -38,7 +31,6 @@ export class LoginService {
             method: "POST",
             credentials: "include"
         })
-
         localStorage.removeItem('is_user_login')
         console.log("Logged out successfully!")
     }
@@ -51,10 +43,6 @@ export class LoginService {
         if (!isEmailValid()) {errors.push('Invalid email format.')}
 
         return errors
-    }
-
-    tryThis = () => {
-        console.log('this')
     }
 }
 

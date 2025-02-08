@@ -62,8 +62,6 @@ var LoginService = /** @class */ (function () {
                         if (!response.ok) {
                             throw new Error("Response status: ".concat(response.status));
                         }
-                        console.log(response);
-                        console.log("Request Successful:", response.ok);
                         return [2 /*return*/, response.ok];
                     case 3:
                         error_1 = _a.sent();
@@ -98,9 +96,6 @@ var LoginService = /** @class */ (function () {
                 errors.push('Invalid email format.');
             }
             return errors;
-        };
-        this.tryThis = function () {
-            console.log('this');
         };
     }
     return LoginService;

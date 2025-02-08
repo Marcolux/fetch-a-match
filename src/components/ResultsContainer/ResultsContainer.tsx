@@ -31,6 +31,9 @@ const ResultsContainer: React.FC<PropsResults> = ({allDogsAvailable}) => {
     const { searchResultsList } = context
     const [ searchList, setSearchList] = searchResultsList
 
+    const { searchBreedFilter } = context
+    const [  breedFilter, setBreedFilter] = searchBreedFilter
+
     const [dogsDetailedList, setDogsDetailedList] = useState<Dog[]>([])
 
     useEffect( () => {
@@ -39,7 +42,7 @@ const ResultsContainer: React.FC<PropsResults> = ({allDogsAvailable}) => {
                 setDogsDetailedList(data)
             })
         }
-    },[searchList])
+    },[searchList, breedFilter])
 
     return(
         <div id="results_container">

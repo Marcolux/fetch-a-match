@@ -14,7 +14,8 @@ export class SearchService {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
-                }
+                },
+                credentials: 'include'
             })
 
             const allBreads = await response.json()
@@ -33,10 +34,10 @@ export class SearchService {
         if (filters) {
             const queryParams = new  URLSearchParams()
 
-            if (filters.breeds) queryParams.append("breeds", filters.breeds.join(','))
-            if (filters.zipCodes) queryParams.append("zipCodes", filters.zipCodes.join(','))
-            if (filters.ageMin) queryParams.append("ageMin", filters.ageMin)
-            if (filters.ageMax) queryParams.append("ageMax", filters.ageMax)
+            if (filters.breeds.length > 0) filters.breeds.forEach(breed => queryParams.append("breeds", breed) )
+            if (filters.zipCodes.length > 0) filters.breeds.forEach(zipCode => queryParams.append("zipCodes", zipCode))
+            if (filters.ageMin !== '') queryParams.append("ageMin", filters.ageMin)
+            if (filters.ageMax !== '') queryParams.append("ageMax", filters.ageMax)
 
             url += `?${queryParams.toString()}`
         }
