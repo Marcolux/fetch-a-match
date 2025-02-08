@@ -1,22 +1,39 @@
 #advanced_search {
     width: 100%;
-    height: 30%;
-    #breeds-box {
-        height: 100%;
-        overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 70vh;
+    .inputFilters {
+        display: flex;
+        flex-direction: column;
+        height: 50px;
+    }
+    #breeds {
+        height: 70%;
         display: flex;
         flex-direction: column;
         gap: 0px;
+        #breed-options{
+            overflow-y: auto;
+            height: 100%;
 
-        .labelCheck {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            label {
-                font-size: 12px;
-                color: black;
-                margin: 0px;
+            .labelCheck {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                label {
+                    font-size: 12px;
+                    color: black;
+                    margin: 0px;
+                }
             }
         }
+    }
+    #inputZipCode{
+        display: flex;
+        flex-direction: column;
+        height: 120px;
+        gap: 5px;
     }
 }

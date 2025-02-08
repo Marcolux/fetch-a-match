@@ -79,7 +79,7 @@ const SearchBar = () => {
             <button id="logoutBtn" onClick={logoutClick}>Logout</button>
             <button id="searchAllBtn" onClick={searchAllPossible}>Search All</button>
 
-                <AdvancedSearch></AdvancedSearch>
+                <AdvancedSearch/>
 
             <div id="pageNavigation">
                 <button id="prevPage" className={prevPage === '' ? 'greyOut' : ''} onClick={() => { movePage(prevPage)}}>Prev Page</button>

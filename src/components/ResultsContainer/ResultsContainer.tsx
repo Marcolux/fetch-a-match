@@ -34,6 +34,15 @@ const ResultsContainer: React.FC<PropsResults> = ({allDogsAvailable}) => {
     const { searchBreedFilter } = context
     const [  breedFilter, setBreedFilter] = searchBreedFilter
 
+    const { searchZipCodesFilter } = context
+    const [zipCodeFilter, setZipCodeFilter] = searchZipCodesFilter
+
+    const { searchAgeMinFilter} = context
+    const [ageMinFilter, setAgeMinFilter] = searchAgeMinFilter
+
+    const { searchAgeMaxFilter} = context
+    const [ageMaxFilter, setAgeMaxFilter] = searchAgeMaxFilter
+
     const [dogsDetailedList, setDogsDetailedList] = useState<Dog[]>([])
 
     useEffect( () => {
@@ -42,7 +51,7 @@ const ResultsContainer: React.FC<PropsResults> = ({allDogsAvailable}) => {
                 setDogsDetailedList(data)
             })
         }
-    },[searchList, breedFilter])
+    },[searchList, breedFilter, zipCodeFilter, ageMaxFilter, ageMinFilter])
 
     return(
         <div id="results_container">
