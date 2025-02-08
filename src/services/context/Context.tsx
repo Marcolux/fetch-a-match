@@ -2,11 +2,11 @@ import React, { useState, createContext, ReactNode } from "react"
 
 
 interface MyContextType {
-    searchResultsList: [string[], React.Dispatch<React.SetStateAction<string[]>>];
-    searchBreedFilter: [string[], React.Dispatch<React.SetStateAction<string[]>>];
-    searchZipCodesFilter: [string[], React.Dispatch<React.SetStateAction<string[]>>];
-    searchAgeMinFilter: [string, React.Dispatch<React.SetStateAction<string>>];
-    searchAgeMaxFilter: [string, React.Dispatch<React.SetStateAction<string>>];
+  searchResultsList: [string[], React.Dispatch<React.SetStateAction<string[]>>];
+  searchBreedFilter: [string[], React.Dispatch<React.SetStateAction<string[]>>];
+  searchZipCodesFilter: [string[], React.Dispatch<React.SetStateAction<string[]>>];
+  searchAgeMinFilter: [string, React.Dispatch<React.SetStateAction<string>>];
+  searchAgeMaxFilter: [string, React.Dispatch<React.SetStateAction<string>>];
 }
 
 const Context = createContext<MyContextType | undefined>(undefined)

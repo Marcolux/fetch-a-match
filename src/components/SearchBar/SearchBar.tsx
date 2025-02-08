@@ -11,15 +11,21 @@ const SearchBar = () => {
     const context = useContext(Context)
 
     // Always check if it's not null
-    if (!context) {
-        throw new Error("context not valid")
-    }
+    if (!context) { throw new Error("context not valid") }
 
-    const { searchResultsList } = context
-    const [ searchList, setSearchList] = searchResultsList
+    const { 
+        searchResultsList, 
+        searchBreedFilter,
+        searchZipCodesFilter,
+        searchAgeMinFilter,
+        searchAgeMaxFilter 
+    } = context
 
-    const { searchBreedFilter } = context
-    const [ breedFilter, setBreedFilter] = searchBreedFilter
+    const [ _searchList, setSearchList] = searchResultsList
+    const [  breedFilter, _setBreedFilter] = searchBreedFilter
+    const [zipCodeFilter, _setZipCodeFilter] = searchZipCodesFilter
+    const [ageMinFilter, _setAgeMinFilter] = searchAgeMinFilter
+    const [ageMaxFilter, _setAgeMaxFilter] = searchAgeMaxFilter
 
     const [nextPage, setNextPage] = useState<string>('')
     const [prevPage, setPrevPage] = useState<string>('')
@@ -34,9 +40,9 @@ const SearchBar = () => {
         const newBreeds = breedFilter
         const results = await searchService.allDogsAvailable({
             breeds : newBreeds,
-            zipCodes: [],
-            ageMin: '' ,
-            ageMax: '',
+            zipCodes: zipCodeFilter,
+            ageMin: ageMinFilter ,
+            ageMax: ageMaxFilter,
         })
         return results
     }
@@ -51,42 +57,24 @@ const SearchBar = () => {
         results.next ? setNextPage(results.next) : setNextPage('')
         results.prev ? setPrevPage(results.prev) : setPrevPage('')
     }
-
-    useEffect(()=>{
+    
+    useEffect( () => {
         const fetchResults = async () => {
             const results = await searchAllPossible()
             updateAllInfo(results)
         }
         fetchResults()
-    },[])
-    
-    useEffect( () => {
-        if (searchList.length > 0 ) {
-            searchService.allDogsAvailable({
-                breeds : breedFilter,
-                zipCodes: [],
-                ageMin: '' ,
-                ageMax: '',
-            }).then((data) => {
-                data.next ? setNextPage(data.next) : setNextPage('')
-                data.prev ? setPrevPage(data.prev) : setPrevPage('') 
-            })
-        }
-    },[breedFilter])
+    },[breedFilter,zipCodeFilter,ageMinFilter,ageMaxFilter])
 
     return(
         <div id="search_bar">
             <button id="logoutBtn" onClick={logoutClick}>Logout</button>
-            <button id="searchAllBtn" onClick={searchAllPossible}>Search All</button>
-
-                <AdvancedSearch/>
-
+            <AdvancedSearch/>
             <div id="pageNavigation">
                 <button id="prevPage" className={prevPage === '' ? 'greyOut' : ''} onClick={() => { movePage(prevPage)}}>Prev Page</button>
                 <button id="nextPage" className={nextPage === '' ? 'greyOut' : ''} onClick={() => { movePage(nextPage)}}>Next Page</button>
             </div>
         </div>
-
     )
 }
 

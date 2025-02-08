@@ -1,15 +1,9 @@
-
-import React from 'react'
 import { useContext, useState, useEffect } from 'react'
 import { Context } from '../../services/context/Context'
 import { searchService } from "../../services/search_service.ts"
 import SingleFriendCard from "../SingleFriendCard/SingleFriend.tsx"
 
 import './results-container.scss'
-
-interface PropsResults {
-    allDogsAvailable: string[]
-}
 
 interface Dog {
     id: string
@@ -20,7 +14,7 @@ interface Dog {
     breed: string
 }
 
-const ResultsContainer: React.FC<PropsResults> = ({allDogsAvailable}) => {
+const ResultsContainer = () => {
     const context = useContext(Context)
 
     // Always check if it's not null
@@ -29,20 +23,8 @@ const ResultsContainer: React.FC<PropsResults> = ({allDogsAvailable}) => {
     }
 
     const { searchResultsList } = context
-    const [ searchList, setSearchList] = searchResultsList
-
-    const { searchBreedFilter } = context
-    const [  breedFilter, setBreedFilter] = searchBreedFilter
-
-    const { searchZipCodesFilter } = context
-    const [zipCodeFilter, setZipCodeFilter] = searchZipCodesFilter
-
-    const { searchAgeMinFilter} = context
-    const [ageMinFilter, setAgeMinFilter] = searchAgeMinFilter
-
-    const { searchAgeMaxFilter} = context
-    const [ageMaxFilter, setAgeMaxFilter] = searchAgeMaxFilter
-
+    const [ searchList, _setSearchList] = searchResultsList
+   
     const [dogsDetailedList, setDogsDetailedList] = useState<Dog[]>([])
 
     useEffect( () => {
@@ -51,17 +33,26 @@ const ResultsContainer: React.FC<PropsResults> = ({allDogsAvailable}) => {
                 setDogsDetailedList(data)
             })
         }
-    },[searchList, breedFilter, zipCodeFilter, ageMaxFilter, ageMinFilter])
+    },[searchList])
 
     return(
-        <div id="results_container">
-            {dogsDetailedList?.map((dog, i) => {
-                return (
-                    <SingleFriendCard key={i} singleDog={dog}/>
-                )
-            })}
+        <div id="possible-results">
+            {
+                searchList.length > 0 
+                ?
+                <div id="results_container">
+                    {dogsDetailedList.map((dog, i) => {
+                        return (
+                            <SingleFriendCard key={i} singleDog={dog}/>
+                        )
+                    })}
+                </div>
+                :
+                <div>
+                    Sorry No results, try to change your filters
+                </div>
+            }
         </div>
-
     )
 }
 

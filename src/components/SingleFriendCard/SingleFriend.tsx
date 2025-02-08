@@ -14,13 +14,13 @@ interface SingleDog {
 
 const SingleFriendCard: React.FC<SingleDog> = ({singleDog}) => {
 
-
     return(
         <div id="single_friend_card">
             <img src={singleDog.img} alt={singleDog.name}></img>
             <p className='dogName'><span>Name:</span> {singleDog.name}</p>
             <p className='dogAge'><span>Age:</span> {singleDog.age}</p>
             <p className='dogBreed'><span>Breed:</span> {singleDog.breed}</p>
+            <p className='dogZipCode'><span>Zip Code:</span> {singleDog.zip_code}</p>
         </div>
     )
 }

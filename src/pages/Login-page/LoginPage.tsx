@@ -33,12 +33,10 @@ const LoginPage = () => {
             }
         }
     }
-    
 
     return(
         <main className="page" id="login_page">
             <section id="loginBox">
-
                 <div className="loginField">
                     <label>Name</label>
                     <div>
@@ -93,8 +91,6 @@ const LoginPage = () => {
                 </div>
                 <button id="loginButton" onClick={() => {loginOnClick()}}>Login</button>
             </section>
-
-     
         </main>
     )
 }

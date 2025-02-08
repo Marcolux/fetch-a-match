@@ -32,15 +32,17 @@ export class SearchService {
         let url = "https://frontend-take-home-service.fetch.com/dogs/search"
 
         if (filters) {
-            const queryParams = new  URLSearchParams()
-
+            const queryParams = new URLSearchParams()
+            
             if (filters.breeds.length > 0) filters.breeds.forEach(breed => queryParams.append("breeds", breed) )
-            if (filters.zipCodes.length > 0) filters.breeds.forEach(zipCode => queryParams.append("zipCodes", zipCode))
+            if (filters.zipCodes.length > 0) filters.zipCodes.forEach(zipCode => queryParams.append("zipCodes", zipCode))
             if (filters.ageMin !== '') queryParams.append("ageMin", filters.ageMin)
             if (filters.ageMax !== '') queryParams.append("ageMax", filters.ageMax)
-
-            url += `?${queryParams.toString()}`
+                            
+            url += `?${queryParams.toString()}&sort=breed:asc`
         }
+            
+        if (url.split('?')[1] === '') url = url.split('?')[0] + '&sort=breed:asc'
     
         try {
             const response = await fetch(url, {
@@ -55,13 +57,10 @@ export class SearchService {
 
             const allDogs = await response.json()
             return allDogs
-
           
         } catch (error: any) {
           console.error(error.message);
         }
-
-        return false
     }
 
     allDogsAvailableNavPage = async (navigationLink: string) => {
@@ -80,13 +79,10 @@ export class SearchService {
 
             const allDogs = await response.json()
             return allDogs
-
           
         } catch (error: any) {
           console.error(error.message);
         }
-
-        return false
     }
 
     fetchDogsDetails = async (dogIds: string[]) => {
@@ -106,7 +102,6 @@ export class SearchService {
             const allDogs = await response.json()
             return allDogs
 
-          
         } catch (error: any) {
           console.error(error.message);
         }

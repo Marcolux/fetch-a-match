@@ -10,22 +10,18 @@ const AdvancedSearch = () => {
     if (!context) {
         throw new Error("context not valid")
     }
+    const [searchTempZip, setSearchTempZip] = useState<string[]>([])
 
-    const [searchResults, setSearchResults] = useState<string[]>([])
+    const { 
+        searchBreedFilter,
+        searchZipCodesFilter,
+        searchAgeMinFilter,
+        searchAgeMaxFilter
+    } = context 
 
-    const { searchResultsList } = context
-    const [ searchList, setSearchList] = searchResultsList
-
-    const { searchBreedFilter } = context
-    const [  breedFilter, setBreedFilter] = searchBreedFilter
-
-    const { searchZipCodesFilter } = context
-    const [zipCodeFilter, setZipCodeFilter] = searchZipCodesFilter
-
-    const { searchAgeMinFilter} = context
-    const [ageMinFilter, setAgeMinFilter] = searchAgeMinFilter
-
-    const { searchAgeMaxFilter} = context
+    const [breedFilter, setBreedFilter] = searchBreedFilter  
+    const [_zipCodeFilter, setZipCodeFilter] = searchZipCodesFilter 
+    const [ageMinFilter, setAgeMinFilter] = searchAgeMinFilter 
     const [ageMaxFilter, setAgeMaxFilter] = searchAgeMaxFilter
 
     const [allBreads, setAllBreads] = useState<string[]>([])
@@ -40,93 +36,74 @@ const AdvancedSearch = () => {
         !newFilter.includes(breedName)
             ? newFilter.push(breedName)
             : newFilter.splice(newFilter.indexOf(breedName), 1)
-        
-        // const newResults = await searchService.allDogsAvailable({
-        //     breeds : breedFilter,
-        //     zipCodes: zipCodeFilter,
-        //     ageMin: ageMinFilter ,
-        //     ageMax: ageMaxFilter,
-        // })
-        // const newSearcList = newResults.resultIds
-        // setSearchList(newSearcList)
+
         setBreedFilter(newFilter)
     }
 
-    const applyFilters =  async () => {
-        const newResults = await searchService.allDogsAvailable({
-            breeds : breedFilter,
-            zipCodes: zipCodeFilter,
-            ageMin: ageMinFilter ,
-            ageMax: ageMaxFilter,
-        })
-        console.log(breedFilter,zipCodeFilter)
-        const newSearcList = newResults.resultIds
-        setSearchList(newSearcList)
-    }
-
-    useEffect(()=>{
-       fetchAllTheBreeds()
-    },[])
+    useEffect(()=>{ fetchAllTheBreeds() },[])
 
     return(
-        
-            <div id="advanced_search">
-                <button onClick={() =>{applyFilters()}}>Apply Filters</button>
-                <div className='inputFilters'>
-                    <label>ZIP Code</label>
-                    <div id="inputZipCode">
-                        <input 
-                            type='text' 
-                            value={zipCodeFilter.join(',').toString()} 
-                            onChange={(e) => {
-                                setZipCodeFilter(e.target.value.split(','))
-                            }}
-                        />
-                    </div>
-                </div>
-                <div className='inputFilters'>
-                    <label>Age Min</label>
-                    <div id="inputZipCode">
-                        <input 
-                            type='text' 
-                            value={ageMinFilter} 
-                            onChange={(e) => {
-                                setAgeMinFilter(e.target.value)
-                            }}
-                        />
-                    </div>
-                </div>
-                <div className='inputFilters'>
-                    <label>Age Max</label>
-                    <div id="inputZipCode">
-                        <input 
-                            type='text' 
-                            value={ageMaxFilter} 
-                            onChange={(e) => {
-                                setAgeMaxFilter(e.target.value)
-                            }}
-                        />
-                    </div>
-                </div>
-                <div id='breeds'>
-                    <label>Breeds</label>
-                    <div id="breed-options">
-                        {allBreads.map((breed , i)=>{
-
-                            return(
-                                <div className='labelCheck' key={i}>
-                                    <label >{breed}</label>
-                                    <input type="checkbox" onClick={() => {
-                                        filterBreed(breed)
-                                    }}/>
-                                   
-                                </div>
-                            )
-                        })}
-                    </div>
+        <div id="advanced_search">
+            
+            <div className='inputFilters'>
+                <label>ZIP Code</label>
+                <div id="inputZipCode">
+                    <input 
+                        type='text' 
+                        value={searchTempZip} 
+                        onChange={(e) => {
+                            if (e.target.value.trim() !== '') {
+                                setSearchTempZip(e.target.value.split(','))
+                            } else {
+                                setSearchTempZip([])
+                            }
+                        }}
+                    />
+                    <button 
+                        onClick={()=>{setZipCodeFilter(searchTempZip)}
+                    }>Apply Zip Code Filter</button>
                 </div>
             </div>
-        
+
+            <div className='inputFilters'>
+                <label>Age Min</label>
+                <input 
+                    type='text' 
+                    value={ageMinFilter} 
+                    onChange={(e) => {
+                        setAgeMinFilter(e.target.value)
+                    }}
+                />
+            </div>
+
+            <div className='inputFilters'>
+                <label>Age Max</label>
+                <input 
+                    type='text' 
+                    value={ageMaxFilter} 
+                    onChange={(e) => {
+                        setAgeMaxFilter(e.target.value)
+                    }}
+                />
+            </div>
+
+            <div id='breeds'>
+                <label>Breeds</label>
+                <div id="breed-options">
+                    {allBreads.map((breed , i)=>{
+                        return(
+                            <div className='labelCheck' key={i}>
+                                <label >{breed}</label>
+                                <input type="checkbox" onClick={() => {
+                                    filterBreed(breed)
+                                }}/>
+                                
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+        </div>  
     )
 }
 
