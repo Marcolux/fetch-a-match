@@ -60,7 +60,6 @@ var SearchService = /** @class */ (function () {
                         return [4 /*yield*/, response.json()];
                     case 3:
                         allBreads = _a.sent();
-                        console.log("allBreads", allBreads);
                         return [2 /*return*/, allBreads];
                     case 4:
                         error_1 = _a.sent();
@@ -105,7 +104,6 @@ var SearchService = /** @class */ (function () {
                         return [4 /*yield*/, response.json()];
                     case 3:
                         allDogs = _a.sent();
-                        console.log("allDogs", allDogs);
                         return [2 /*return*/, allDogs];
                     case 4:
                         error_2 = _a.sent();
@@ -115,13 +113,44 @@ var SearchService = /** @class */ (function () {
                 }
             });
         }); };
-        this.fetchDogsDetails = function (dogIds) { return __awaiter(_this, void 0, void 0, function () {
+        this.allDogsAvailableNavPage = function (navigationLink) { return __awaiter(_this, void 0, void 0, function () {
             var url, response, allDogs, error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        url = "https://frontend-take-home-service.fetch.com".concat(navigationLink);
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 4, , 5]);
+                        return [4 /*yield*/, fetch(url, {
+                                method: "GET",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                credentials: 'include'
+                            })];
+                    case 2:
+                        response = _a.sent();
+                        if (!response.ok)
+                            throw new Error(" Error: ".concat(response.status));
+                        return [4 /*yield*/, response.json()];
+                    case 3:
+                        allDogs = _a.sent();
+                        return [2 /*return*/, allDogs];
+                    case 4:
+                        error_3 = _a.sent();
+                        console.error(error_3.message);
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/, false];
+                }
+            });
+        }); };
+        this.fetchDogsDetails = function (dogIds) { return __awaiter(_this, void 0, void 0, function () {
+            var url, response, allDogs, error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
                         url = "https://frontend-take-home-service.fetch.com/dogs";
-                        console.log(JSON.stringify(dogIds));
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 4, , 5]);
@@ -140,11 +169,10 @@ var SearchService = /** @class */ (function () {
                         return [4 /*yield*/, response.json()];
                     case 3:
                         allDogs = _a.sent();
-                        console.log("Fetched Dogs", allDogs);
                         return [2 /*return*/, allDogs];
                     case 4:
-                        error_3 = _a.sent();
-                        console.error(error_3.message);
+                        error_4 = _a.sent();
+                        console.error(error_4.message);
                         return [3 /*break*/, 5];
                     case 5: return [2 /*return*/];
                 }

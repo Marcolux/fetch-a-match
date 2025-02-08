@@ -1,11 +1,12 @@
-// import { useNavigate } from "react-router-dom"
-import { searchService } from "../../services/search_service.ts"
-// import { loginService } from "../../services/login_service.ts"
+
 import React from 'react'
 import { useContext, useState, useEffect } from 'react'
 import { Context } from '../../services/context/Context'
-import './results-container.scss'
+import { searchService } from "../../services/search_service.ts"
 import SingleFriendCard from "../SingleFriendCard/SingleFriend.tsx"
+
+import './results-container.scss'
+
 interface PropsResults {
     allDogsAvailable: string[]
 }
@@ -34,20 +35,17 @@ const ResultsContainer: React.FC<PropsResults> = ({allDogsAvailable}) => {
 
     useEffect( () => {
         if (searchList.length > 0 ) {
-
             searchService.fetchDogsDetails(searchList).then((data) => {
                 setDogsDetailedList(data)
             })
         }
-
     },[searchList])
-
 
     return(
         <div id="results_container">
-            {dogsDetailedList?.map((dog) => {
+            {dogsDetailedList?.map((dog, i) => {
                 return (
-                    <SingleFriendCard singleDog={dog}/>
+                    <SingleFriendCard key={i} singleDog={dog}/>
                 )
             })}
         </div>

@@ -74,7 +74,6 @@ const LoginPage = () => {
                             value={userEmail}
                             onChange={(e) => {
                                 setUserEmail(e.target.value)
-
                                 if (errors.length > 0) {
                                     setErrors(loginService.validation({
                                         name: userName,
@@ -83,10 +82,11 @@ const LoginPage = () => {
                                 }
                             }}
                         />
-                        {errors.includes('Invalid email format.') 
-                            ?
+                        {
+                            errors.includes('Invalid email format.') 
+                                ?
                             <p className="inputError">Invalid email format.</p> 
-                            :
+                                :
                             null
                         }
                     </div>

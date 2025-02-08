@@ -18,9 +18,7 @@ export class SearchService {
             })
 
             const allBreads = await response.json()
-            console.log("allBreads", allBreads)
             return allBreads
-
           
         } catch (error: any) {
           console.error(error.message);
@@ -40,7 +38,7 @@ export class SearchService {
             if (filters.ageMin) queryParams.append("ageMin", filters.ageMin)
             if (filters.ageMax) queryParams.append("ageMax", filters.ageMax)
 
-                url += `?${queryParams.toString()}`
+            url += `?${queryParams.toString()}`
         }
     
         try {
@@ -55,7 +53,31 @@ export class SearchService {
             if (!response.ok) throw new Error(` Error: ${response.status}`)
 
             const allDogs = await response.json()
-            console.log("allDogs", allDogs)
+            return allDogs
+
+          
+        } catch (error: any) {
+          console.error(error.message);
+        }
+
+        return false
+    }
+
+    allDogsAvailableNavPage = async (navigationLink: string) => {
+        let url = `https://frontend-take-home-service.fetch.com${navigationLink}`
+    
+        try {
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: 'include'
+            })
+
+            if (!response.ok) throw new Error(` Error: ${response.status}`)
+
+            const allDogs = await response.json()
             return allDogs
 
           
@@ -68,7 +90,6 @@ export class SearchService {
 
     fetchDogsDetails = async (dogIds: string[]) => {
         let url = "https://frontend-take-home-service.fetch.com/dogs"
-        console.log(JSON.stringify(dogIds))
         try {
             const response = await fetch(url, {
                 method: "POST",
@@ -82,7 +103,6 @@ export class SearchService {
             if (!response.ok) throw new Error(` Error: ${response.status}`)
 
             const allDogs = await response.json()
-            console.log("Fetched Dogs", allDogs)
             return allDogs
 
           

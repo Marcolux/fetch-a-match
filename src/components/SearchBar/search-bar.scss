@@ -1,5 +1,5 @@
 #search_bar {
-   width: 10%; 
+   
    display: flex;
    flex-direction: column;
    align-items: start;
@@ -8,4 +8,17 @@
    padding: 25px;
    position: sticky;
    top: 0px;
+    #pageNavigation {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        button {
+            &.greyOut {
+                pointer-events: none;
+                background-color: rgb(212, 210, 210);
+                color: black;
+                border: 1px solid black;
+            }
+        }
+    }
 }
