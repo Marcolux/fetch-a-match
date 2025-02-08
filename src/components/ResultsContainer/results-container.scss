@@ -1,0 +1,11 @@
+#results_container { 
+   display: flex;
+   flex-wrap: wrap;
+   flex: 1;
+   align-items: start;
+   gap: 30px;
+   background-color: azure;
+   padding: 30px;
+
+   color:black
+}

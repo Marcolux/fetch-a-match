@@ -1,0 +1,11 @@
+#search_bar {
+   width: 10%; 
+   display: flex;
+   flex-direction: column;
+   align-items: start;
+   gap: 30px;
+   background-color: aquamarine;
+   padding: 25px;
+   position: sticky;
+   top: 0px;
+}

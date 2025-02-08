@@ -24,6 +24,7 @@ const LoginPage = () => {
 
         if (newErrors.length === 0) {
             const isResponseOk = await loginService.authentication(userInfo)
+            console.log(isResponseOk)
 
             if (isResponseOk) {
                 localStorage.setItem('is_user_login', 'true')
@@ -32,6 +33,7 @@ const LoginPage = () => {
             }
         }
     }
+    
 
     return(
         <main className="page" id="login_page">

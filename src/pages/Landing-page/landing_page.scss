@@ -1,3 +1,8 @@
 #landing_page {
-    
+    display: flex;
+    background-color: antiquewhite;
+    flex: 1;
+    height: 100vh;
+    position: relative;
+    overflow-y: auto;
 }

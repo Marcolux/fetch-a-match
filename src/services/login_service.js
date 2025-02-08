@@ -54,6 +54,7 @@ var LoginService = /** @class */ (function () {
                                 headers: {
                                     "Content-Type": "application/json"
                                 },
+                                credentials: "include",
                                 body: JSON.stringify(user)
                             })];
                     case 2:
@@ -69,6 +70,21 @@ var LoginService = /** @class */ (function () {
                         console.error(error_1.message);
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/, false];
+                }
+            });
+        }); };
+        this.logoutUser = function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, fetch("https://frontend-take-home-service.fetch.com/auth/logout", {
+                            method: "POST",
+                            credentials: "include"
+                        })];
+                    case 1:
+                        _a.sent();
+                        localStorage.removeItem('is_user_login');
+                        console.log("Logged out successfully!");
+                        return [2 /*return*/];
                 }
             });
         }); };

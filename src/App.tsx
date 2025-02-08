@@ -2,6 +2,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from 'react'
 
+
 import LoginPage from './pages/Login-page/LoginPage'
 import LandingPage from './pages/Landing-page/LandingPage';
 import './App.scss'

@@ -1,20 +1,18 @@
-import { useNavigate } from "react-router-dom"
+import { SearchService } from "../../services/search_service"
+import SearchBar from "../../components/SearchBar/SearchBar"
+import ResultsContainer from "../../components/ResultsContainer/ResultsContainer"
+import './landing_page.scss'
+import { useState } from "react"
 
 const LandingPage = () => {
-    const navigator = useNavigate()
-
-    const logoutClick = () => {
-        localStorage.removeItem("is_user_login")
-        window.dispatchEvent(new Event("storage"))
-        navigator('/login', { replace: true })
-    }
+    const [searchResults, setSearchResults] = useState<string[]>([])
 
     return(
         <main className="page p-0" id="landing_page">
-            Landing Page
-
-            <button id="logoutBtn" onClick={logoutClick}>Logout</button>
+            <SearchBar></SearchBar>
+            <ResultsContainer allDogsAvailable={searchResults}/>
             
+
         </main>
     )
 }

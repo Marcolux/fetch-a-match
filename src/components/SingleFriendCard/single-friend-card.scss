@@ -1,0 +1,29 @@
+#single_friend_card {
+    height: 350px;
+    width: 250px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+
+    img {
+        width: 100%;
+        height: 70%;
+        object-fit: cover;
+        object-position: top center;
+        border-radius: 10px;
+    }
+    p {
+        margin: 0px;
+        font-weight: 400;
+        span {
+            font-weight: 600;
+        }
+        &.dogName{
+            font-size: 18px;
+        }
+        &.dogAge{
+
+        }
+        &.dogBreed{}
+    }
+}

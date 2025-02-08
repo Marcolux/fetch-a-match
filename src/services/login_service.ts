@@ -13,6 +13,7 @@ export class LoginService {
                 headers: {
                     "Content-Type": "application/json"
                 },
+                credentials: "include",
                 body: JSON.stringify(user)
             })
             if (!response.ok) {
@@ -30,6 +31,16 @@ export class LoginService {
         }
 
         return false
+    }
+
+    logoutUser = async () => {
+        await fetch("https://frontend-take-home-service.fetch.com/auth/logout", {
+            method: "POST",
+            credentials: "include"
+        })
+
+        localStorage.removeItem('is_user_login')
+        console.log("Logged out successfully!")
     }
 
     validation = (user: User) => {
