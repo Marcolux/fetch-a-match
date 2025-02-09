@@ -1,16 +1,16 @@
 #possible-results {
    color:black;
    flex: 1;
-   background-color: rgb(4, 91, 91);
+   background-color: var(--secondary-color);
 
    #results_container { 
       display: flex;
       flex-wrap: wrap;
       align-items: start;
       height: fit-content;
-      justify-content: space-between;
+      // justify-content: space-between;
       gap: 30px;
-      background-color: rgb(4, 91, 91);
+      background-color: var(--secondary-color);
       padding: 30px;
       min-height: calc(100% - 60px);
    

@@ -36,25 +36,30 @@ export class SearchService {
     allDogsAvailable = async (filters?: SearchFilters, sortRules?: SearchSort ) => {
         let url = "https://frontend-take-home-service.fetch.com/dogs/search"
         let additionalParams = ''
+        let cong = ''
+        const queryParams = new URLSearchParams()
 
         if (filters) {
-            const queryParams = new URLSearchParams()
             
             if (filters.breeds.length > 0) filters.breeds.forEach(breed => queryParams.append("breeds", breed) )
             if (filters.zipCodes.length > 0) filters.zipCodes.forEach(zipCode => queryParams.append("zipCodes", zipCode))
             if (filters.ageMin !== '') queryParams.append("ageMin", filters.ageMin)
             if (filters.ageMax !== '') queryParams.append("ageMax", filters.ageMax)
                             
-            url += `?${queryParams.toString()}`
+            if (queryParams.size > 0) { 
+                url += `?${queryParams.toString()}`
+            }
         }
 
-        if (sortRules) {
-            additionalParams = `&sort=${sortRules.sortBy}:${sortRules.order}`
+        cong = queryParams.size > 0 ? '&' : '?'
+
+        if (sortRules?.sortBy && sortRules?.order) {
+            additionalParams = `sort=${sortRules.sortBy}:${sortRules.order}`
         } else {
-            additionalParams = '&sort=breed:asc'
+            additionalParams = 'sort=breed:asc'
         }
-
-        url = url + additionalParams
+        
+        url = `${url}${cong}${additionalParams}`
     
         try {
             const response = await fetch(url, {

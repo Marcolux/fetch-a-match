@@ -71,31 +71,35 @@ var SearchService = /** @class */ (function () {
             });
         }); };
         this.allDogsAvailable = function (filters, sortRules) { return __awaiter(_this, void 0, void 0, function () {
-            var url, additionalParams, queryParams_1, response, allDogs, error_2;
+            var url, additionalParams, cong, queryParams, response, allDogs, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         url = "https://frontend-take-home-service.fetch.com/dogs/search";
                         additionalParams = '';
+                        cong = '';
+                        queryParams = new URLSearchParams();
                         if (filters) {
-                            queryParams_1 = new URLSearchParams();
                             if (filters.breeds.length > 0)
-                                filters.breeds.forEach(function (breed) { return queryParams_1.append("breeds", breed); });
+                                filters.breeds.forEach(function (breed) { return queryParams.append("breeds", breed); });
                             if (filters.zipCodes.length > 0)
-                                filters.zipCodes.forEach(function (zipCode) { return queryParams_1.append("zipCodes", zipCode); });
+                                filters.zipCodes.forEach(function (zipCode) { return queryParams.append("zipCodes", zipCode); });
                             if (filters.ageMin !== '')
-                                queryParams_1.append("ageMin", filters.ageMin);
+                                queryParams.append("ageMin", filters.ageMin);
                             if (filters.ageMax !== '')
-                                queryParams_1.append("ageMax", filters.ageMax);
-                            url += "?".concat(queryParams_1.toString());
+                                queryParams.append("ageMax", filters.ageMax);
+                            if (queryParams.size > 0) {
+                                url += "?".concat(queryParams.toString());
+                            }
                         }
-                        if (sortRules) {
-                            additionalParams = "&sort=".concat(sortRules.sortBy, ":").concat(sortRules.order);
+                        cong = queryParams.size > 0 ? '&' : '?';
+                        if ((sortRules === null || sortRules === void 0 ? void 0 : sortRules.sortBy) && (sortRules === null || sortRules === void 0 ? void 0 : sortRules.order)) {
+                            additionalParams = "sort=".concat(sortRules.sortBy, ":").concat(sortRules.order);
                         }
                         else {
-                            additionalParams = '&sort=breed:asc';
+                            additionalParams = 'sort=breed:asc';
                         }
-                        url = url + additionalParams;
+                        url = "".concat(url).concat(cong).concat(additionalParams);
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 4, , 5]);

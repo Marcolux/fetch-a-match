@@ -1,3 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+:root {
+  --primary-color: #ffb948;
+  --secondary-color: #ffdf85;
+  --primary-contrast-dark: #49241f;
+  --primary-contrast-light : #703c2c;
+  --primary-font-color: #000000;
+}
+
 #root {
   width: 100vw;
   min-height: 100vh;
@@ -9,6 +20,112 @@
     display: flex;
   }
 
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+  button {
+    background-color: #703c2c;
+    color: #fff;
+    border-radius: 0px;
+    border: 1px solid #000;
+    padding: 5px 15px !important;
+    box-sizing: content-box;
+    width: fit-content;
+    box-shadow: 
+      0px 2px 4px rgba(0, 0, 0, 0.4), 
+      0px 7px 13px -3px rgba(0, 0, 0, 0.3), 
+      inset 0px -3px 0px #49241f7c;
+    &:focus {
+      outline: none !important;
+      box-shadow: 
+        0px 2px 4px #ffdf85, 
+        0px 7px 13px -3px #ffdf85, 
+        inset 0px -3px 0px #49241f7c;
+    }
+    &:hover {
+      box-shadow: none;
+    }
+    &:active {
+      box-shadow: 
+        0px 2px 4px rgba(0, 0, 0, 0.4), 
+        0px 7px 13px -3px rgba(0, 0, 0, 0.3), 
+        inset 0px -3px 0px #49241f7c;
+    }
+  }
+
+  input[type="text"], select {
+    height: 30px;
+    width: 100%;
+    background-color: #fafafaef;
+    padding: 5px;
+    color: #000;
+    border: none;
+    border-bottom: 1px solid #49241f;
+    font-size: 14px;
+    &:active, &:focus {
+      outline: none !important;
+      box-shadow: 2px 2px 4px #00000063;
+    }
+  }
+  input[type="checkbox"] {
+    background-color: #fafafaef !important;
+    padding: 5px;
+    color: #000;
+    border: none;
+    font-size: 14px;
+    &:active, &:focus {
+      outline: none !important;
+      box-shadow: 2px 2px 4px #00000063;
+    }
+    &::after {
+      color: #ffb948 !important;
+    }
+  }
+
+  ::-webkit-scrollbar{
+    width: 12px !important;
+  }
+  ::-webkit-scrollbar-track{
+    background-color: #49241f42;
+    // border-radius: 20px;
+    
+  }
+  ::-webkit-scrollbar-thumb{
+    // background-color: #2d475c;
+    background-color: #49241fab;
+    border-radius: 10px;
+    border: none;
+  }
+  font-family:'Inter', sans-serif;
 }
 
+@font-face {
+	font-family: 'Ledger';
+	src: url('./fonts/ledger/Ledger-Regular.ttf');
+}
+@font-face {
+	font-family: 'Bebas Neue';
+	src: url('./fonts/Bebas_Neue/BebasNeue-Regular.ttf');
+}
+@font-face {
+	font-family: 'Prata';
+	src: url('./fonts/Prata/Prata-Regular.ttf');
+}
+@font-face {
+	font-family: 'Bison';
+	src: url('./fonts/Bison/Bison-Bold.ttf');
+}
+@font-face {
+	font-family: 'September Script';
+	src: url('./fonts/September_script/september-script.regular.ttf');
+}
+@font-face {
+	font-family: 'Playfair Display';
+	src: url('./fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf');
+}
+@font-face {
+	font-family: 'Inter';
+	src: url('./fonts/Inter/Inter-Regular.ttf');
+}
+@font-face {
+	font-family: 'Merriweather';
+	src: url('./fonts/Merriweather/Merriweather-Regular.ttf');
+}

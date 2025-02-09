@@ -7,25 +7,41 @@
     .inputFilters {
         display: flex;
         flex-direction: column;
+        margin-top: 10px;
+        label {
+            font-weight: bold;
+        }
     }
     #breeds {
         height: 66%;
         min-height: 250px;
         display: flex;
         flex-direction: column;
+        margin-top: 10px;
         gap: 0px;
-        #breed-options{
+        >label {
+            font-weight: bold;
+        }
+        
+        #breed-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
             overflow-y: auto;
             height: 100%;
-
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 6px #0000004d;
             .labelCheck {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 label {
-                    font-size: 12px;
+                    font-size: 14px;
                     color: black;
                     margin: 0px;
+                    
                 }
             }
         }

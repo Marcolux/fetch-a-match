@@ -17,7 +17,12 @@ const LandingPage = () => {
 
     const searchAllPossible = async () => {
         const results = await searchService.allDogsAvailable()
-        setSearchList(results.resultIds)
+        
+        if (results) {
+            setSearchList(results.resultIds)
+        } else {
+            localStorage.removeItem('is_user_login')
+        }
     }
 
     useEffect(()=>{ searchAllPossible() },[])
