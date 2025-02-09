@@ -22,10 +22,12 @@ const ResultsContainer = () => {
         throw new Error("context not valid")
     }
 
-    const { searchResultsList } = context
+    const { searchResultsList, savFavsFriendsList } = context
     const [ searchList, _setSearchList] = searchResultsList
+    const [favsFriendsList, setFavsFriendsList] = savFavsFriendsList
    
     const [dogsDetailedList, setDogsDetailedList] = useState<Dog[]>([])
+    const [favsPageOn, setFavsPageOn] = useState<boolean>(false)
 
     useEffect( () => {
         if (searchList.length > 0 ) {
@@ -37,6 +39,13 @@ const ResultsContainer = () => {
 
     return(
         <div id="possible-results">
+            <div>
+                <button onClick={() => {setFavsPageOn(true)}}>Check Your Favourites</button>
+            </div>
+            <div className={favsPageOn ? '' : 'hide'}>
+                Favourite Page List
+                <button onClick={() => {setFavsPageOn(false)}}>Close</button>
+            </div>
             {
                 searchList.length > 0 
                 ?

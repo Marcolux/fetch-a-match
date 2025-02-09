@@ -5,6 +5,11 @@ interface SearchFilters {
     ageMax: string
 }
 
+interface SearchSort {
+    sortBy: "breed" | "name" | "age"
+    order: "asc" | "desc"
+}
+
 export class SearchService {
 
     allBreads = async () => {
@@ -28,8 +33,9 @@ export class SearchService {
         return false
     }
 
-    allDogsAvailable = async (filters?: SearchFilters) => {
+    allDogsAvailable = async (filters?: SearchFilters, sortRules?: SearchSort ) => {
         let url = "https://frontend-take-home-service.fetch.com/dogs/search"
+        let additionalParams = ''
 
         if (filters) {
             const queryParams = new URLSearchParams()
@@ -39,10 +45,16 @@ export class SearchService {
             if (filters.ageMin !== '') queryParams.append("ageMin", filters.ageMin)
             if (filters.ageMax !== '') queryParams.append("ageMax", filters.ageMax)
                             
-            url += `?${queryParams.toString()}&sort=breed:asc`
+            url += `?${queryParams.toString()}`
         }
-            
-        if (url.split('?')[1] === '') url = url.split('?')[0] + '&sort=breed:asc'
+
+        if (sortRules) {
+            additionalParams = `&sort=${sortRules.sortBy}:${sortRules.order}`
+        } else {
+            additionalParams = '&sort=breed:asc'
+        }
+
+        url = url + additionalParams
     
         try {
             const response = await fetch(url, {

@@ -70,12 +70,13 @@ var SearchService = /** @class */ (function () {
                 }
             });
         }); };
-        this.allDogsAvailable = function (filters) { return __awaiter(_this, void 0, void 0, function () {
-            var url, queryParams_1, response, allDogs, error_2;
+        this.allDogsAvailable = function (filters, sortRules) { return __awaiter(_this, void 0, void 0, function () {
+            var url, additionalParams, queryParams_1, response, allDogs, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         url = "https://frontend-take-home-service.fetch.com/dogs/search";
+                        additionalParams = '';
                         if (filters) {
                             queryParams_1 = new URLSearchParams();
                             if (filters.breeds.length > 0)
@@ -86,10 +87,15 @@ var SearchService = /** @class */ (function () {
                                 queryParams_1.append("ageMin", filters.ageMin);
                             if (filters.ageMax !== '')
                                 queryParams_1.append("ageMax", filters.ageMax);
-                            url += "?".concat(queryParams_1.toString(), "&sort=breed:asc");
+                            url += "?".concat(queryParams_1.toString());
                         }
-                        if (url.split('?')[1] === '')
-                            url = url.split('?')[0] + '&sort=breed:asc';
+                        if (sortRules) {
+                            additionalParams = "&sort=".concat(sortRules.sortBy, ":").concat(sortRules.order);
+                        }
+                        else {
+                            additionalParams = '&sort=breed:asc';
+                        }
+                        url = url + additionalParams;
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 4, , 5]);

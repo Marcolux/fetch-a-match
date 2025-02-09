@@ -2,15 +2,15 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    flex: 1;
-    min-height: 70vh;
+    height: 60vh;
+
     .inputFilters {
         display: flex;
         flex-direction: column;
-        // height: 50px;
     }
     #breeds {
-        height: 70%;
+        height: 66%;
+        min-height: 250px;
         display: flex;
         flex-direction: column;
         gap: 0px;
@@ -33,7 +33,6 @@
     #inputZipCode{
         display: flex;
         flex-direction: column;
-        height: 120px;
         gap: 5px;
     }
 }

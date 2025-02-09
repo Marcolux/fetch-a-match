@@ -27,6 +27,8 @@ const SearchBar = () => {
     const [ageMinFilter, _setAgeMinFilter] = searchAgeMinFilter
     const [ageMaxFilter, _setAgeMaxFilter] = searchAgeMaxFilter
 
+    const [sortBy, setSortBy] = useState<'breed' | "name" | "age">('breed')
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
     const [nextPage, setNextPage] = useState<string>('')
     const [prevPage, setPrevPage] = useState<string>('')
 
@@ -38,12 +40,18 @@ const SearchBar = () => {
 
     const searchAllPossible = async () => {
         const newBreeds = breedFilter
-        const results = await searchService.allDogsAvailable({
-            breeds : newBreeds,
-            zipCodes: zipCodeFilter,
-            ageMin: ageMinFilter ,
-            ageMax: ageMaxFilter,
-        })
+        const results = await searchService.allDogsAvailable(
+            {
+                breeds : newBreeds,
+                zipCodes: zipCodeFilter,
+                ageMin: ageMinFilter ,
+                ageMax: ageMaxFilter
+            },
+            {
+                sortBy: sortBy,
+                order: sortOrder
+            }
+        )
         return results
     }
 
@@ -58,17 +66,67 @@ const SearchBar = () => {
         results.prev ? setPrevPage(results.prev) : setPrevPage('')
     }
     
-    useEffect( () => {
-        const fetchResults = async () => {
-            const results = await searchAllPossible()
-            updateAllInfo(results)
-        }
-        fetchResults()
-    },[breedFilter,zipCodeFilter,ageMinFilter,ageMaxFilter])
+    useEffect( 
+        () => {
+            const fetchResults = async () => {
+                const results = await searchAllPossible()
+                updateAllInfo(results)
+            }
+            fetchResults()
+        },[
+            breedFilter,
+            zipCodeFilter,
+            ageMinFilter,
+            ageMaxFilter, 
+            sortBy,
+            sortOrder
+        ]
+    )
 
     return(
         <div id="search_bar">
             <button id="logoutBtn" onClick={logoutClick}>Logout</button>
+                        
+            <div className='inputFilters'>
+                <label>Sort by</label>
+                <div id="inputZipCode">
+                    <select value={sortBy} onChange={(e) => {
+                        if (e.target.value === 'breed'|| 
+                            e.target.value === 'name' || 
+                            e.target.value === 'age') {
+                            setSortBy(e.target.value)
+                        }
+                    }}>
+                        <option value={"breed"}>Breed</option>
+                        <option value={"name"}>Name</option>
+                        <option value={"age"}>Age</option>
+                    </select>
+                    <div>
+                        <div>
+                            <label htmlFor="order-asc">Ascendentant</label>
+                            <input 
+                                name="order" 
+                                id='order-asc' 
+                                type="radio" 
+                                value={sortOrder}
+                                checked={sortOrder === "asc" ? true : false}
+                                onChange={() => {setSortOrder('asc')}}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="order-desc">Descendant</label>
+                            <input 
+                                name="order" 
+                                id='order-desc' 
+                                type="radio" 
+                                checked={sortOrder === "desc" ? true : false}
+                                onChange={() => {setSortOrder('desc')}}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <AdvancedSearch/>
             <div id="pageNavigation">
                 <button id="prevPage" className={prevPage === '' ? 'greyOut' : ''} onClick={() => { movePage(prevPage)}}>Prev Page</button>
