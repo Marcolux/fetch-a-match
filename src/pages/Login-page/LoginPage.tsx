@@ -1,9 +1,8 @@
-
-
-import "./login_page.scss"
+import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { loginService } from "../../services/login_service.ts"
-import { useNavigate } from "react-router-dom"
+import "./login_page.scss"
+// import {RESOURCE_FOLDER} from '../../'
 
 const LoginPage = () => {
 

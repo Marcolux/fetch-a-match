@@ -25,11 +25,11 @@ const ResultsContainer = () => {
         throw new Error("context not valid")
     }
 
-    const { searchResultsList, savfavsPageOn } = context
+    const { searchResultsList } = context
     const [ searchList, _setSearchList] = searchResultsList
    
     const [dogsDetailedList, setDogsDetailedList] = useState<Dog[]>([])
-    const [favsPageOn, setFavsPageOn] = savfavsPageOn 
+    // const [favsPageOn, setFavsPageOn] = savfavsPageOn 
 
 
     useEffect( () => {
