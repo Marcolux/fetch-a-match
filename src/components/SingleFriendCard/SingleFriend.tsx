@@ -33,7 +33,10 @@ const SingleFriendCard: React.FC<SingleDog> = ({singleDog}) => {
         })
     }
     return(
-        <div id="single_friend_card">
+        <div 
+            id="single_friend_card"
+            className={favsFriendsList.includes(singleDog.id) ? 'highligth' : ''}
+        >
             <img src={singleDog.img} alt={singleDog.name}></img>
             <div className='all_info'>
 
@@ -44,11 +47,16 @@ const SingleFriendCard: React.FC<SingleDog> = ({singleDog}) => {
                 <div className='input_label'>
 
                     <input 
-                        type='checkbox' 
-                        className='dogZipCode' 
+                        id={`${singleDog.id}`} 
+                        type="checkbox" 
+                        className='check_fav' 
                         checked={favsFriendsList.includes(singleDog.id)}
                         onChange={favLogic}
-                    /><label>Fav</label>
+                    />
+                    <label 
+                        htmlFor={`${singleDog.id}`}
+                        className='heart_label'
+                    >❤</label>
                 </div>
             </div>
 

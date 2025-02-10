@@ -110,7 +110,7 @@ const NavBar = () => {
                 </div>
                 <div className='nav_bar_filters'>
                     <div>
-                        <label htmlFor="order-asc">Ascendentant</label>
+                        <label htmlFor="order-asc">Ascending</label>
                         <input 
                             name="order" 
                             id='order-asc' 
@@ -121,7 +121,7 @@ const NavBar = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="order-desc">Descendant</label>
+                        <label htmlFor="order-desc">Descending</label>
                         <input 
                             name="order" 
                             id='order-desc' 

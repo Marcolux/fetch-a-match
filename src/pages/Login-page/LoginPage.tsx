@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { loginService } from "../../services/login_service.ts"
 import "./login_page.scss"
-// import {RESOURCE_FOLDER} from '../../'
+import { RESOURCE_FOLDER } from "../../resource_base.ts"
 
 const LoginPage = () => {
 
@@ -101,7 +101,7 @@ const LoginPage = () => {
                     <button id="loginButton" onClick={() => {loginOnClick()}}>Login</button>
                 </div>
             </section>
-            <img id="loginImg" src="/icons/paw.png" alt="Login Image fetch & Match"/>
+            <img id="loginImg" src={`${RESOURCE_FOLDER}/icons/paw.png`} alt="Login Image fetch & Match"/>
         </main>
     )
 }
