@@ -44,7 +44,7 @@ const AdvancedSearch = () => {
 
     return(
         <div id="advanced_search">
-            
+            <h3><u>Filter By:</u></h3>
             <div className='inputFilters'>
                 <label>ZIP Code</label>
                 <div id="inputZipCode">
@@ -64,27 +64,29 @@ const AdvancedSearch = () => {
                     }>Apply Zip Code Filter</button>
                 </div>
             </div>
+            <div id='age_filters'>
 
-            <div className='inputFilters'>
-                <label>Age Min</label>
-                <input 
-                    type='text' 
-                    value={ageMinFilter} 
-                    onChange={(e) => {
-                        setAgeMinFilter(e.target.value)
-                    }}
-                />
-            </div>
+                <div className='inputFilters'>
+                    <label>Age Min</label>
+                    <input 
+                        type='text' 
+                        value={ageMinFilter} 
+                        onChange={(e) => {
+                            setAgeMinFilter(e.target.value)
+                        }}
+                    />
+                </div>
 
-            <div className='inputFilters'>
-                <label>Age Max</label>
-                <input 
-                    type='text' 
-                    value={ageMaxFilter} 
-                    onChange={(e) => {
-                        setAgeMaxFilter(e.target.value)
-                    }}
-                />
+                <div className='inputFilters'>
+                    <label>Age Max</label>
+                    <input 
+                        type='text' 
+                        value={ageMaxFilter} 
+                        onChange={(e) => {
+                            setAgeMaxFilter(e.target.value)
+                        }}
+                    />
+                </div>
             </div>
 
             <div id='breeds'>

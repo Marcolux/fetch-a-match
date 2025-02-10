@@ -191,6 +191,39 @@ var SearchService = /** @class */ (function () {
                 }
             });
         }); };
+        this.findTheMatch = function (dogIds) { return __awaiter(_this, void 0, void 0, function () {
+            var url, response, match, error_5;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        url = "https://frontend-take-home-service.fetch.com/dogs/match";
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 4, , 5]);
+                        return [4 /*yield*/, fetch(url, {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                credentials: 'include',
+                                body: JSON.stringify(dogIds)
+                            })];
+                    case 2:
+                        response = _a.sent();
+                        if (!response.ok)
+                            throw new Error(" Error: ".concat(response.status));
+                        return [4 /*yield*/, response.json()];
+                    case 3:
+                        match = _a.sent();
+                        return [2 /*return*/, match.match];
+                    case 4:
+                        error_5 = _a.sent();
+                        console.error(error_5.message);
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
+                }
+            });
+        }); };
     }
     return SearchService;
 }());

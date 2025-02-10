@@ -1,7 +1,10 @@
 import { useContext, useState, useEffect } from 'react'
 import { Context } from '../../services/context/Context'
 import { searchService } from "../../services/search_service.ts"
+
 import SingleFriendCard from "../SingleFriendCard/SingleFriend.tsx"
+import NavBar from '../NavBar/NavBar.tsx'
+import FavsCollection from '../FavsCollection/FavsCollection.tsx'
 
 import './results-container.scss'
 
@@ -22,12 +25,12 @@ const ResultsContainer = () => {
         throw new Error("context not valid")
     }
 
-    const { searchResultsList, savFavsFriendsList } = context
+    const { searchResultsList, savfavsPageOn } = context
     const [ searchList, _setSearchList] = searchResultsList
-    const [favsFriendsList, setFavsFriendsList] = savFavsFriendsList
    
     const [dogsDetailedList, setDogsDetailedList] = useState<Dog[]>([])
-    const [favsPageOn, setFavsPageOn] = useState<boolean>(false)
+    const [favsPageOn, setFavsPageOn] = savfavsPageOn 
+
 
     useEffect( () => {
         if (searchList.length > 0 ) {
@@ -39,13 +42,8 @@ const ResultsContainer = () => {
 
     return(
         <div id="possible-results">
-            <div>
-                <button onClick={() => {setFavsPageOn(true)}}>Check Your Favourites</button>
-            </div>
-            <div className={favsPageOn ? '' : 'hide'}>
-                Favourite Page List
-                <button onClick={() => {setFavsPageOn(false)}}>Close</button>
-            </div>
+            <NavBar/>
+            <FavsCollection/>
             {
                 searchList.length > 0 
                 ?

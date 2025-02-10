@@ -1,8 +1,8 @@
 import { useEffect, useContext } from "react"
 import { Context } from "../../services/context/Context"
 import { searchService } from "../../services/search_service.ts"
-import SearchBar from "../../components/SearchBar/SearchBar"
 import ResultsContainer from "../../components/ResultsContainer/ResultsContainer"
+import AdvancedSearch from "../../components/AdvancedSearch/AdvancedSearch.tsx"
 import './landing_page.scss'
 
 const LandingPage = () => {
@@ -29,7 +29,7 @@ const LandingPage = () => {
 
     return(
         <main className="page p-0" id="landing_page">
-            <SearchBar></SearchBar>
+            <AdvancedSearch/>
             <ResultsContainer/>
         </main>
     )

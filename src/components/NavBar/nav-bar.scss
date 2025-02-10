@@ -1,0 +1,41 @@
+#nav_bar {
+    display: flex;
+    width: 100%;
+    background-color: #fff6de;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: end;
+    border-bottom: 1px solid var(--primary-color);
+    h3 {
+        margin: 0px 10px;
+    }
+    .filter_container {
+        display: flex;
+        gap: 40px;
+        .nav_bar_filters {
+            display: flex;
+            align-items: end;
+            gap: 5px;
+        }
+        
+    }
+    #pageNavigation {
+        width: fit-content;
+        display: flex;
+        align-items: end;
+        justify-content: center;
+        gap: 20px;
+        button {
+            &.greyOut {
+                pointer-events: none;
+                background-color: #ffffffe1 !important;
+                color: black;
+                border: 1px solid black;
+            }
+        }
+    }
+    #logout_favs{
+        display: flex;
+        gap: 20px;
+    }
+}

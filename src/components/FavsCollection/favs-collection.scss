@@ -1,0 +1,38 @@
+
+#fav_collection {
+   position: fixed;
+   top: 0px;
+   left: 0px;
+   height: 100vh;
+   width: 100vw;
+   background-color: #fff6de;
+   z-index: 10;
+   display: flex;
+   flex-direction: column;
+   button {
+      height: fit-content;
+      margin-left: 0px;
+   }
+   &.hide {display: none !important;}
+   #button_div {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--primary-color);
+      button {
+         margin: 0px;
+      }
+   }
+   #listContainer{
+      background-color: #fff6de;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      height: 100%;
+      width: 100%;
+      overflow-y: auto;
+      gap: 20px;
+      padding: 30px;
+   }
+}
+

@@ -4,6 +4,7 @@
 :root {
   --primary-color: #ffb948;
   --secondary-color: #ffdf85;
+  --variant-1-color: #ffb338;
   --primary-contrast-dark: #49241f;
   --primary-contrast-light : #703c2c;
   --primary-font-color: #000000;
@@ -19,7 +20,6 @@
     width: 100%;
     display: flex;
   }
-
 
   button {
     background-color: #703c2c;
@@ -41,7 +41,7 @@
         inset 0px -3px 0px #49241f7c;
     }
     &:hover {
-      box-shadow: none;
+      box-shadow: none !important;
     }
     &:active {
       box-shadow: 
@@ -57,8 +57,7 @@
     background-color: #fafafaef;
     padding: 5px;
     color: #000;
-    border: none;
-    border-bottom: 1px solid #49241f;
+    border: 1px solid #49241f44;
     font-size: 14px;
     &:active, &:focus {
       outline: none !important;
@@ -79,17 +78,16 @@
       color: #ffb948 !important;
     }
   }
-
-  ::-webkit-scrollbar{
+  .flex {
+    display: flex;
+  }
+  ::-webkit-scrollbar {
     width: 12px !important;
   }
-  ::-webkit-scrollbar-track{
+  ::-webkit-scrollbar-track {
     background-color: #49241f42;
-    // border-radius: 20px;
-    
   }
-  ::-webkit-scrollbar-thumb{
-    // background-color: #2d475c;
+  ::-webkit-scrollbar-thumb {
     background-color: #49241fab;
     border-radius: 10px;
     border: none;

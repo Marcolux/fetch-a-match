@@ -124,6 +124,28 @@ export class SearchService {
         }
     }
 
+    findTheMatch = async (dogIds: string[]) => {
+        let url = "https://frontend-take-home-service.fetch.com/dogs/match"
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: 'include',
+                body: JSON.stringify(dogIds)
+            })
+
+            if (!response.ok) throw new Error(` Error: ${response.status}`)
+
+            const match = await response.json()
+            return match.match
+
+        } catch (error: any) {
+          console.error(error.message);
+        }
+    }
+
 }
 
 export const searchService = new SearchService()
