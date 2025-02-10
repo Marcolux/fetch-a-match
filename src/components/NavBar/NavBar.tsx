@@ -53,13 +53,17 @@ const NavBar = () => {
     }
 
     const movePage = async (nextOrPrev: string) => {
-        const newResults = await searchService.allDogsAvailableNavPage(nextOrPrev)
-        updateAllInfo(newResults)
+        if (nextOrPrev) {
+            const newResults = await searchService.allDogsAvailableNavPage(nextOrPrev)
+            if (newResults) {
+                updateAllInfo(newResults)
+            }
+        }
     }
 
     const updateAllInfo = (results: any) => {
         setSearchList(results.resultIds)
-        results.next ? setNextPage(results.next) : setNextPage('')
+        results.total > parseInt(results.next.split('from=')[1]) ? setNextPage(results.next) : setNextPage('')
         results.prev ? setPrevPage(results.prev) : setPrevPage('')
     }
 

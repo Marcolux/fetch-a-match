@@ -5,13 +5,17 @@
     padding: 0px;
     background-color: #fff;
     overflow: hidden;
+    // border: 1px solid #00000042;
     box-shadow: 0px 8px 16px 0px #49241f61;
+    // box-shadow: 0px 8px 16px 0px #ffb9483e;
     position: relative;
     &.highligth {
-        box-shadow: 0px 8px 16px 0px #ffb9483e;
+        box-shadow: 0px 8px 16px 0px #3a2a112a;
+        // box-shadow: 0px 8px 16px 0px #49241f61;
     }
     img {
-        background-color: #f2f2f2;
+        // background-color: #f2f2f2;
+        background-color: #fcfcfc;
         width: 100%;
         height: 60%;
         object-fit: contain;
@@ -58,7 +62,8 @@
                 }
             }
             .check_fav:checked + label {
-                color: var(--primary-color);
+                // color: var(--primary-color);
+                color: red;
             }
         }
         p {

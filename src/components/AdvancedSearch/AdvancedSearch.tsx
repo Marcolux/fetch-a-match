@@ -96,9 +96,19 @@ const AdvancedSearch = () => {
                         return(
                             <div className='labelCheck' key={i}>
                                 <label >{breed}</label>
-                                <input type="checkbox" onClick={() => {
-                                    filterBreed(breed)
-                                }}/>
+                                <div className="custom_chk">
+                                    <input 
+                                        type="checkbox" 
+                                        id={`custom_chk_${i}`}
+                                        onClick={() => {
+                                            filterBreed(breed)
+                                        }}
+                                    />
+                                    <label
+                                        tabIndex={0}
+                                        htmlFor={`custom_chk_${i}`}
+                                    ></label>
+                                </div>
                                 
                             </div>
                         )
