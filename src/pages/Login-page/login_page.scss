@@ -9,16 +9,32 @@
     position: relative;
     overflow: hidden;
     padding: 40px;
-    gap: 30px;
+    gap: 20px;
 
     .main_title {
         color: var(--primary-contrast-dark);
         font-size: 80px;
         margin-top: 0px;
-        margin-bottom: 20px;
+        margin-bottom: 0px;
     }
     #main_description{
-        width: 80%;
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        ul, .center_text {
+            text-align: center;
+            align-self: center;
+        }
+        li {
+            list-style: none;
+        }
+        .center_text {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        ul {
+            margin: 10px;
+        }
     }
 
     #loginBox {

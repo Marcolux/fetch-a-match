@@ -5,26 +5,25 @@ import './advanced-search.scss'
 
 const AdvancedSearch = () => {
     const context = useContext(Context)
-
-    // Always check if it's not null
     if (!context) {
         throw new Error("context not valid")
     }
-    const [searchTempZip, setSearchTempZip] = useState<string[]>([])
-
+    
     const { 
         searchBreedFilter,
         searchZipCodesFilter,
         searchAgeMinFilter,
         searchAgeMaxFilter
     } = context 
-
+    
     const [breedFilter, setBreedFilter] = searchBreedFilter  
     const [_zipCodeFilter, setZipCodeFilter] = searchZipCodesFilter 
     const [ageMinFilter, setAgeMinFilter] = searchAgeMinFilter 
     const [ageMaxFilter, setAgeMaxFilter] = searchAgeMaxFilter
-
+    
+    const [searchTempZip, setSearchTempZip] = useState<string[]>([])
     const [allBreads, setAllBreads] = useState<string[]>([])
+    const [zipCodeFilterOn, setZipCodeFilterOn] = useState<boolean>(false)
 
     const fetchAllTheBreeds = async () => {
         const allTheBreads = await searchService.allBreads()
@@ -52,16 +51,45 @@ const AdvancedSearch = () => {
                         type='text' 
                         value={searchTempZip} 
                         onChange={(e) => {
+                            setZipCodeFilterOn(false)
                             if (e.target.value.trim() !== '') {
                                 setSearchTempZip(e.target.value.split(','))
                             } else {
                                 setSearchTempZip([])
                             }
                         }}
+                        onKeyDown={() => {
+                            setZipCodeFilterOn(false)
+                            setZipCodeFilter([])
+                        }}
                     />
-                    <button 
-                        onClick={()=>{setZipCodeFilter(searchTempZip)}
-                    }>Apply Zip Code Filter</button>
+                    <div>
+                        <label >Apply Zip Code Filter</label>
+                        <div className="custom_chk">
+                            <input 
+                                type='checkbox'
+                                id='zip_check'
+                                checked={zipCodeFilterOn}
+                                onChange={(e) => {
+                                    (e.target.checked && searchTempZip.length !== 0) 
+                                    ? setZipCodeFilter(searchTempZip) 
+                                    : setZipCodeFilter([])
+                                    setZipCodeFilterOn(prev=> {
+                                        let newValue 
+                                        searchTempZip.length !== 0 
+                                        ? newValue = !prev
+                                        : newValue = false
+                                        return newValue
+                                    })
+                                }}
+                            />
+                            <label
+                                tabIndex={0}
+                                htmlFor='zip_check'
+                            ></label>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <div id='age_filters'>
@@ -109,7 +137,6 @@ const AdvancedSearch = () => {
                                         htmlFor={`custom_chk_${i}`}
                                     ></label>
                                 </div>
-                                
                             </div>
                         )
                     })}

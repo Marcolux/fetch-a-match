@@ -34,8 +34,7 @@ const SingleFriendCard: React.FC<SingleDog> = ({singleDog}) => {
     }
     return(
         <div 
-            id="single_friend_card"
-            className={favsFriendsList.includes(singleDog.id) ? 'highligth' : ''}
+            className={favsFriendsList.includes(singleDog.id) ? 'highligth single_friend_card' : 'single_friend_card'}
         >
             <img src={singleDog.img} alt={singleDog.name}></img>
             <div className='all_info'>

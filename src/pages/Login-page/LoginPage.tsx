@@ -36,14 +36,17 @@ const LoginPage = () => {
     return(
         <main className="page" id="login_page">
             <h1 className="main_title">Welcome to Fetch a Match</h1>
-            <p id="main_description">
-                Lorem ipsum odor amet, consectetuer adipiscing elit. 
-                Suscipit accumsan enim et eu convallis? Imperdiet ad curae integer augue malesuada suscipit malesuada. 
-                Conubia luctus facilisi euismod augue tempor vitae erat. 
-                Est habitasse dapibus odio faucibus vehicula duis primis donec viverra. 
-                Suspendisse elementum nostra habitasse consequat consectetur aliquet. 
-                Quis ridiculus fusce fringilla leo, rutrum suspendisse leo.
-            </p>
+            <div id="main_description">
+                <p>Find your perfect furry friend with ease! Log in to browse adorable dogs, filter by breed, and save your favorites. 
+                <br/>Once you've found your top picks, we'll help you generate the best match based on your preferences.</p>
+                <p className="center_text">How It Works:</p>
+                <ul>
+                    <li>Enter your name and email to log in.</li>
+                    <li>Search for available dogs and apply filters to find the perfect fit.</li>
+                    <li>Save your favorites and generate a match!</li>
+                </ul>
+                <p className="center_text">Ready to find your four-legged companion? Log in to get started!</p>
+            </div>
             <section id="loginBox">
                 <div className="loginField">
                     <label>Name</label>

@@ -23,7 +23,12 @@
         display: flex;
         flex-direction: column;
         label {
-            font-weight: bold;
+            font-weight: 500;
+        }
+        div {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
     }
     #breeds {
@@ -32,7 +37,7 @@
         flex-direction: column;
         gap: 0px;
         >label {
-            font-weight: bold;
+            font-weight: 500;
         }
         
         #breed-options {
@@ -56,44 +61,45 @@
                     
                 }
             }
-            .custom_chk {
-                margin-left: 10px;
-                input {
-                    display: none;
-                    &:active, &:focus {
-                        outline: none !important;
-                        // box-shadow: 2px 2px 4px #00000063;
-                    }
-                }
-                label {
-                    height: 13px;
-                    width: 13px;
-                    border: 1px solid grey;
-                    display: inline-block;
-                    position: relative;
-                    font-size: 15px !important;
-                }
-                input[type=checkbox]:checked + label:before {
-                    content: '\2714';
-                    font-size: 20px !important;
-                    color: var(--primary-contrast-dark);
-                    position: absolute;
-                    bottom: -8px;
-                    left: 0;
-                }
-                input[type=checkbox]:active + label, 
-                input[type=checkbox]:focus + label,
-                label:focus-visible
-                 {
-                    outline: none !important;
-                    box-shadow: 2px 2px 4px #00000063;
-                  }
-            }
+
         }
     }
     #inputZipCode{
         display: flex;
         flex-direction: column;
         gap: 5px;
+    }
+    .custom_chk {
+        margin-left: 10px;
+        input {
+            display: none;
+            &:active, &:focus {
+                outline: none !important;
+                // box-shadow: 2px 2px 4px #00000063;
+            }
+        }
+        label {
+            height: 13px;
+            width: 13px;
+            border: 1px solid grey;
+            display: inline-block;
+            position: relative;
+            font-size: 15px !important;
+        }
+        input[type=checkbox]:checked + label:before {
+            content: '\2714';
+            font-size: 20px !important;
+            color: var(--primary-contrast-dark);
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+        }
+        input[type=checkbox]:active + label, 
+        input[type=checkbox]:focus + label,
+        label:focus-visible
+         {
+            outline: none !important;
+            box-shadow: 2px 2px 4px #00000063;
+          }
     }
 }

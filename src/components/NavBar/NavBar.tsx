@@ -19,7 +19,7 @@ const NavBar = () => {
         searchZipCodesFilter,
         searchAgeMinFilter,
         searchAgeMaxFilter,
-        savfavsPageOn 
+        savfavsPageOn
     } = context
 
     const [ _searchList, setSearchList] = searchResultsList
@@ -91,8 +91,7 @@ const NavBar = () => {
     )
 
     return(
-        
-              
+             
         <div id='nav_bar'>
             <div className="filter_container">
 
@@ -112,7 +111,8 @@ const NavBar = () => {
                         </select>
                     </div>
                 </div>
-                <div className='nav_bar_filters'>
+
+                <div id="asc_desc" className='nav_bar_filters'>
                     <div>
                         <label htmlFor="order-asc">Ascending</label>
                         <input 
@@ -147,7 +147,6 @@ const NavBar = () => {
                 <button id="logoutBtn" onClick={logoutClick}>Logout</button>
             </div>
         </div>
-        
     )
 }
 

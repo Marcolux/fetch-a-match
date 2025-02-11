@@ -7,6 +7,7 @@ import NavBar from '../NavBar/NavBar.tsx'
 import FavsCollection from '../FavsCollection/FavsCollection.tsx'
 
 import './results-container.scss'
+import Loading from '../Loading/Loading.tsx'
 
 interface Dog {
     id: string
@@ -19,8 +20,7 @@ interface Dog {
 
 const ResultsContainer = () => {
     const context = useContext(Context)
-
-    // Always check if it's not null
+    
     if (!context) {
         throw new Error("context not valid")
     }
@@ -29,10 +29,10 @@ const ResultsContainer = () => {
     const [ searchList, _setSearchList] = searchResultsList
    
     const [dogsDetailedList, setDogsDetailedList] = useState<Dog[]>([])
-    // const [favsPageOn, setFavsPageOn] = savfavsPageOn 
-
+    const [loading, setLoading] = useState<boolean>(true)
 
     useEffect( () => {
+        setLoading(true)
         if (searchList.length > 0 ) {
             searchService.fetchDogsDetails(searchList).then((data) => {
                 setDogsDetailedList(data)
@@ -40,26 +40,44 @@ const ResultsContainer = () => {
         }
     },[searchList])
 
+    useEffect( () => {
+        if (dogsDetailedList.length > 0) {
+            setTimeout(() => {setLoading(false)},2000)
+        }
+    },[dogsDetailedList])
+
     return(
         <div id="possible-results">
             <NavBar/>
             <FavsCollection/>
-            {
-                searchList.length > 0 
-                ?
-                <div id="results_container">
-                    {dogsDetailedList.map((dog, i) => {
-                        return (
-                            <SingleFriendCard key={i} singleDog={dog}/>
-                        )
-                    })}
-                </div>
-                :
-                <div>
-                    Sorry No results, try to change your filters
-                </div>
-            }
+            <div id='container_friends'>
+
+                {
+                    (loading && searchList.length > 0 ) 
+                    ? <Loading/> 
+                    : null
+                }
+                {
+                    searchList.length > 0 
+                    ?
+                    <div 
+                        id="results_container"
+                        className={loading ? 'hide' : ''}
+                    >
+                        {dogsDetailedList.map((dog, i) => {
+                            return (
+                                <SingleFriendCard key={i} singleDog={dog}/>
+                            )
+                        })}
+                    </div>
+                    :
+                    <div>
+                        Sorry No results, try to change your filters
+                    </div>
+                }
+            </div>
         </div>
+
     )
 }
 

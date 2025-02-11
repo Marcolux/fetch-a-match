@@ -12,6 +12,12 @@
    button {
       height: fit-content;
       margin-left: 0px;
+      &.greyOut {
+         pointer-events: none;
+         background-color: #ffffffe1 !important;
+         color: black;
+         border: 1px solid black;
+      }
    }
    &.hide {display: none !important;}
    #button_div {
@@ -24,15 +30,60 @@
       }
    }
    #listContainer{
-      background-color: #fff6de;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      height: 100%;
-      width: 100%;
-      overflow-y: auto;
-      gap: 20px;
-      padding: 30px;
+      position: relative;
+      #all_faves {
+         background-color: #fff6de;
+         display: flex;
+         justify-content: center;
+         flex-wrap: wrap;
+         height: 100%;
+         width: 100%;
+         overflow-y: auto;
+         gap: 20px;
+         padding: 30px;
+
+         &.blur {
+            filter: blur(10px);
+            pointer-events: none !important;
+         }
+      }
+
+      #final_match {
+         position: fixed;
+         height: 500px;
+         width: 500px;
+         top: calc(50% - 250px);
+         left: calc(50% - 250px);
+         display: flex;
+         flex-direction: column;
+         font-size: 19px;
+         align-items: center;
+         justify-content: center;
+         z-index: 15;
+         background-color: #ffffff;
+         border: 1px solid var(--primary-contrast-dark);
+         .single_friend_card {
+            width: 100% !important;
+            .all_info {
+               width: fit-content;
+               justify-self: center;
+            }
+            .heart_label {
+               display: none;
+            }
+         }
+         p.title {
+            font-weight: 600;
+            font-size: 30px;
+         }
+      }
    }
+   .hide {
+      display: none !important;
+      height: 0px;
+      width: 0px;
+      overflow: hidden;
+   }
+
 }
 

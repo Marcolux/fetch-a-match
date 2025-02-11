@@ -8,6 +8,8 @@ interface MyContextType {
   searchAgeMaxFilter: [string, React.Dispatch<React.SetStateAction<string>>];
   savFavsFriendsList: [string[], React.Dispatch<React.SetStateAction<string[]>>];
   savfavsPageOn: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  zipCodeFilterChk: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  
 }
 
 const Context = createContext<MyContextType | undefined>(undefined)
@@ -20,6 +22,8 @@ const Provider: React.FC<{ children: ReactNode }> = ({children}) => {
   const [ageMaxFilter, setAgeMaxFilter] = useState<string>('')
   const [favsFriendsList, setFavsFriendsList] = useState<string[]>([])
   const [favsPageOn, setFavsPageOn] = useState<boolean>(false)
+  const [zipCodeFilterOn, setZipCodeFilterOn] = useState<boolean>(false)
+   
 
   const state: MyContextType = {
     searchResultsList: [searchList, setSearchList],
@@ -28,7 +32,8 @@ const Provider: React.FC<{ children: ReactNode }> = ({children}) => {
     searchAgeMinFilter: [ageMinFilter, setAgeMinFilter],
     searchAgeMaxFilter: [ageMaxFilter, setAgeMaxFilter],
     savFavsFriendsList: [favsFriendsList, setFavsFriendsList],
-    savfavsPageOn: [favsPageOn, setFavsPageOn]
+    savfavsPageOn: [favsPageOn, setFavsPageOn],
+    zipCodeFilterChk: [zipCodeFilterOn, setZipCodeFilterOn]
   }
 
   return (
